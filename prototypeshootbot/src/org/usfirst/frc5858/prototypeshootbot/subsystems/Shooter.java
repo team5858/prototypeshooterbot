@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -53,17 +54,22 @@ public class Shooter extends Subsystem {
     
     public void RunForwards()
     {
+    	boolean button = SmartDashboard.getBoolean("DB/Button 0");
+    	
+    	
     	topLeft.set(1.0);
     	topRight.set(1.0);
     	bottomLeft.set(1.0);
     	bottomRight.set(1.0);
     }
+    
     public void RunBackwards() {
     	topLeft.set(-1.0);
     	topRight.set(-1.0);
     	bottomLeft.set(-1.0);
     	bottomRight.set(-1.0);
     }
+    
     public void Stop() {
     	topLeft.set(0.0);
     	topRight.set(0.0);
