@@ -52,22 +52,38 @@ public class Shooter extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     
+    public double getPower() {
+       	boolean button = SmartDashboard.getBoolean("DB/Button 0");
+    	double power = SmartDashboard.getNumber("DB/Slider 0", 0.0)/5.0;
+    	
+    	if(button == true)
+    	{
+    		power = power * -1.0;
+    	}
+    	
+    	SmartDashboard.putString("DB/String 0", String.valueOf(power));
+    	
+    	return power;
+    }
+    
     public void RunForwards()
     {
-    	boolean button = SmartDashboard.getBoolean("DB/Button 0");
+    	double power = getPower();
     	
-    	
-    	topLeft.set(1.0);
-    	topRight.set(1.0);
-    	bottomLeft.set(1.0);
-    	bottomRight.set(1.0);
+    	topLeft.set(power);
+    	topRight.set(-power);
+    	bottomLeft.set(power);
+    	bottomRight.set(-power);
     }
     
     public void RunBackwards() {
-    	topLeft.set(-1.0);
-    	topRight.set(-1.0);
-    	bottomLeft.set(-1.0);
-    	bottomRight.set(-1.0);
+    	
+    	double power = getPower();
+    	
+    	topLeft.set(-power);
+    	topRight.set(power);
+    	bottomLeft.set(-power);
+    	bottomRight.set(power);
     }
     
     public void Stop() {
